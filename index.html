@@ -18,6 +18,7 @@
   <link id="miya-google-fonts" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Great+Vibes&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&family=Italiana&family=Jost:wght@200;300;400;500&family=Long+Cang&family=LXGW+WenKai+SC&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@300;400;600&family=Noto+Sans+SC:wght@300;400;500&family=Nunito:wght@600;700;800&family=Outfit:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=ZCOOL+XiaoWei&family=Zhi+Mang+Xing&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Great+Vibes&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500&family=Italiana&family=Jost:wght@200;300;400;500&family=Long+Cang&family=LXGW+WenKai+SC&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@300;400;600&family=Noto+Sans+SC:wght@300;400;500&family=Nunito:wght@600;700;800&family=Outfit:wght@200;300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=ZCOOL+XiaoWei&family=Zhi+Mang+Xing&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="css/style.css?v=36">
+  <link rel="stylesheet" href="css/miya-dark.css?v=1">
   <link rel="stylesheet" href="css/miya-desk-p1-weekcal.css?v=12">
   <link rel="stylesheet" href="css/miya-desk-p2.css?v=14">
   <link rel="stylesheet" href="css/miya-desk-p3.css?v=1">
@@ -1045,6 +1046,33 @@
             </div>
             <div class="ins-atelier-splash-actions">
               <button type="button" class="ins-chip ins-chip--gold" id="miya-bf-splash-preview">预览开屏</button>
+            </div>
+          </article>
+
+          <article class="ins-atelier-splash-card">
+            <div class="ins-atelier-splash-card__head">
+              <p class="ins-atelier-panel-kicker">01 · 深色</p>
+              <h2 class="ins-atelier-panel-title">深色模式</h2>
+              <p class="ins-atelier-panel-desc">全局深色外观 · 聊天与桌面壁纸自动压暗，不刺眼也不糊成纯黑</p>
+            </div>
+            <div class="ins-atelier-splash-pill ins-atelier-splash-pill--card">
+              <div>
+                <strong>深色模式</strong>
+                <span id="miya-bf-dark-status">已关闭</span>
+              </div>
+              <button type="button" class="ins-toggle" id="miya-bf-dark-switch" role="switch" aria-checked="false" aria-label="深色模式开关"></button>
+            </div>
+            <div class="ins-atelier-splash-pill ins-atelier-splash-pill--card" style="margin-top:8px;">
+              <div>
+                <strong>自动切换</strong>
+                <span id="miya-bf-dark-auto-status">关闭 · 手动控制</span>
+              </div>
+              <button type="button" class="ins-toggle" id="miya-bf-dark-auto-switch" role="switch" aria-checked="false" aria-label="自动切换开关"></button>
+            </div>
+            <div class="ins-url-replace" id="miya-bf-dark-time-row" style="margin-top:10px;">
+              <input type="time" class="ins-text-input" id="miya-bf-dark-start" value="20:00" aria-label="深色模式开始时间">
+              <span style="color:var(--ink-soft);font-size:12px;">至</span>
+              <input type="time" class="ins-text-input" id="miya-bf-dark-end" value="07:00" aria-label="深色模式结束时间">
             </div>
           </article>
 
@@ -6777,12 +6805,13 @@
   <script defer src="js1/jszip.min.js"></script>
   <script defer src="js2/miya-dialog.js?v=4"></script>
   <script defer src="js2/miya-theme.js?v=30"></script>
+  <script defer src="js2/miya-dark.js?v=1"></script>
   <script defer src="js2/miya-desk-custom-widget-templates.js?v=5"></script>
   <script defer src="js2/miya-desk-custom.js?v=53"></script>
   <script defer src="js2/miya-splash.js?v=13"></script>
   <script defer src="js2/miya-lockscreen.js?v=10"></script>
   <script defer src="js2/miya-update-notice.js?v=15"></script>
-  <script defer src="js1/miya-beautify-app.js?v=26"></script>
+  <script defer src="js1/miya-beautify-app.js?v=27"></script>
   <script defer src="js2/miya-msg-sound.js?v=1"></script>
   <script defer src="js2/miya-image-gen.js?v=4"></script>
   <script defer src="js2/miya-settings-app.js?v=54"></script>

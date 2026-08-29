@@ -1,0 +1,183 @@
+/* ============================================================
+ * miya-dark.css — 深色模式（蚀月定制）
+ * 作用域：html.miya-dark
+ * 策略：变量覆盖（自动翻大部分 UI）+ 硬编码选择器补丁 + 壁纸遮罩
+ * 注意：--ink 系列会被 JS 内联覆盖，由 miya-dark.js setProperty('important') 强制
+ * ============================================================ */
+
+/* ── 全局变量：浅→深 ── */
+html.miya-dark {
+  --white: rgba(24, 26, 31, 0.98);
+  --glass-bg: rgba(26, 28, 34, 0.96);
+  --glass-line: rgba(255, 255, 255, 0.10);
+  --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  --ink: rgba(232, 234, 238, 0.92);
+  --ink-soft: rgba(188, 192, 200, 0.78);
+  --ink-faint: rgba(148, 153, 163, 0.62);
+
+  /* 聊天变量 */
+  --mc-bg: #14161a;
+  --mc-bg-warm: #1a1d22;
+  --mc-surface: #1e2127;
+  --mc-surface-glass: #20232a;
+  --mc-ink: #e6e8ec;
+  --mc-ink-dim: #9aa1ac;
+  --mc-ink-faint: #757c88;
+  --mc-line: rgba(255, 255, 255, 0.10);
+  --mc-line-strong: rgba(255, 255, 255, 0.18);
+  --mc-accent: #e6e8ec;
+  --mc-accent-soft: rgba(255, 255, 255, 0.06);
+  --mc-gold-soft: rgba(255, 255, 255, 0.08);
+
+  /* qq 派生 */
+  --qq-text: var(--mc-ink);
+  --qq-text-2: var(--mc-ink-dim);
+  --qq-text-3: var(--mc-ink-faint);
+  --qq-divider: var(--mc-line);
+  --qq-bg: var(--mc-bg);
+  --qq-surface: var(--mc-surface);
+  --qq-blue: var(--mc-accent);
+  --qq-blue-soft: var(--mc-accent-soft);
+  --qq-badge: var(--mc-accent);
+  --qq-red: #c9c9c9;
+}
+
+/* ── 手机壳与壁纸 ── */
+html.miya-dark body,
+html.miya-dark .phone {
+  background: #0c0e12;
+}
+html.miya-dark .phone__wall {
+  background: #0c0e12;
+}
+/* 桌面壁纸遮罩：半透明深蓝灰，不纯黑 */
+html.miya-dark .phone__wall.has-custom-wall::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(8, 10, 14, 0.42);
+  pointer-events: none;
+}
+
+/* ── 聊天室 ── */
+html.miya-dark .qq-room {
+  background: #14161a;
+}
+html.miya-dark .qq-room__loading {
+  background: rgba(20, 22, 26, 0.9);
+}
+html.miya-dark .qq-room__head {
+  background: rgba(20, 22, 26, 0.92);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+html.miya-dark .qq-room__head-name {
+  color: #eceef2;
+}
+html.miya-dark .qq-room__head-avatar::after {
+  border-color: #14161a;
+}
+html.miya-dark .qq-room__foot {
+  background: rgba(20, 22, 26, 0.94);
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+html.miya-dark .qq-room.qq-room--keyboard .qq-room__foot {
+  background: #14161a;
+}
+/* 聊天壁纸遮罩 */
+html.miya-dark .qq-room.mq-has-wall .mq-room-wall::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 10, 14, 0.52);
+  pointer-events: none;
+}
+/* 气泡 */
+html.miya-dark .qq-room__row--them .qq-room__bubble {
+  background: #23262c;
+  color: #dfe2e8;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+html.miya-dark .qq-room__row--me .qq-room__bubble {
+  background: #2b2e35;
+  color: #eceef2;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+/* 翻译气泡 */
+html.miya-dark .qq-room__row--them .qq-room__bubble-stack > .qq-room__bubble-trans {
+  background: #1a1d22;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+html.miya-dark .qq-room__row--me .qq-room__bubble-stack > .qq-room__bubble-trans {
+  background: #20232a;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+/* 输入区 */
+html.miya-dark .qq-room__input-box {
+  background: #1b1e24;
+  border-color: rgba(255, 255, 255, 0.09);
+}
+html.miya-dark .qq-room__input-box:focus-within {
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+html.miya-dark .qq-room__input {
+  color: #e8eaee;
+  -webkit-text-fill-color: #e8eaee;
+}
+html.miya-dark .qq-room__input::placeholder {
+  color: #565c66;
+}
+html.miya-dark .qq-room__msg-time {
+  color: rgba(150, 155, 165, 0.6);
+}
+html.miya-dark .qq-room__head-status,
+html.miya-dark .qq-room__typing-text {
+  color: #6b7280;
+}
+html.miya-dark .qq-room__tool-icon,
+html.miya-dark .qq-room__compose-btn,
+html.miya-dark .qq-room__send {
+  color: #6b7280;
+}
+html.miya-dark .qq-room__tool-icon:hover,
+html.miya-dark .qq-room__compose-btn:hover,
+html.miya-dark .qq-room__send:hover {
+  color: #a8adb8;
+}
+/* HTML 面板 */
+html.miya-dark .qq-room__html-panel {
+  background: rgba(20, 22, 26, 0.94);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+html.miya-dark .qq-room__html-toolbar {
+  background: rgba(20, 22, 26, 0.98);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+html.miya-dark .qq-room__html-iframe {
+  background: #14161a;
+}
+
+/* ── 通用：弹窗 / 面板 / 输入框 / 列表（变量自动翻，补硬编码） ── */
+html.miya-dark .ins-modal,
+html.miya-dark .modal {
+  background: #1a1d22;
+  color: var(--ink);
+}
+html.miya-dark .ins-text-input,
+html.miya-dark .ins-select {
+  background: #121418;
+  color: #dfe2e8;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+html.miya-dark .ins-text-input::placeholder {
+  color: #565c66;
+}
+
+/* ── 桌面图标文字（内联 --ink 由 JS important 强制，这里兜底） ── */
+html.miya-dark .desk--p1,
+html.miya-dark .desk--p2,
+html.miya-dark .desk--p3,
+html.miya-dark .desk--p4 {
+  color: rgba(235, 237, 241, 0.92);
+}

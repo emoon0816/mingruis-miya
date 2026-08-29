@@ -1283,6 +1283,83 @@
       });
     }
 
+    // ── 深色模式（蚀月定制）──
+    function syncDarkUi() {
+      var dm = global.miyaDarkMode;
+      if (!dm) return;
+      var st = dm.get();
+      var nowDark = document.documentElement.classList.contains('miya-dark');
+      var darkSw = $('miya-bf-dark-switch');
+      var autoSw = $('miya-bf-dark-auto-switch');
+      var status = $('miya-bf-dark-status');
+      var autoStatus = $('miya-bf-dark-auto-status');
+      if (darkSw) {
+        darkSw.classList.toggle('is-on', st.mode === 'on' || (st.mode === 'auto' && nowDark));
+        darkSw.setAttribute('aria-checked', darkSw.classList.contains('is-on') ? 'true' : 'false');
+      }
+      if (autoSw) {
+        autoSw.classList.toggle('is-on', st.mode === 'auto');
+        autoSw.setAttribute('aria-checked', st.mode === 'auto' ? 'true' : 'false');
+      }
+      if (status) {
+        if (st.mode === 'on') status.textContent = '已开启';
+        else if (st.mode === 'auto') status.textContent = nowDark ? '自动 · 当前深色' : '自动 · 当前浅色';
+        else status.textContent = '已关闭';
+      }
+      if (autoStatus) {
+        autoStatus.textContent = st.mode === 'auto'
+          ? '开启 · ' + st.start + ' – ' + st.end
+          : '关闭 · 手动控制';
+      }
+      var start = $('miya-bf-dark-start');
+      var end = $('miya-bf-dark-end');
+      if (start) start.value = st.start || '20:00';
+      if (end) end.value = st.end || '07:00';
+      var row = $('miya-bf-dark-time-row');
+      if (row) row.hidden = st.mode !== 'auto';
+    }
+
+    var darkSw = $('miya-bf-dark-switch');
+    if (darkSw) {
+      darkSw.addEventListener('click', function () {
+        var dm = global.miyaDarkMode;
+        if (!dm) return;
+        var st = dm.get();
+        var next = st.mode === 'on' ? 'off' : 'on';
+        dm.set({ mode: next });
+        syncDarkUi();
+        toast(next === 'on' ? '深色模式已开启' : '深色模式已关闭');
+      });
+    }
+    var darkAutoSw = $('miya-bf-dark-auto-switch');
+    if (darkAutoSw) {
+      darkAutoSw.addEventListener('click', function () {
+        var dm = global.miyaDarkMode;
+        if (!dm) return;
+        var st = dm.get();
+        var next = st.mode === 'auto' ? 'off' : 'auto';
+        dm.set({ mode: next });
+        syncDarkUi();
+        toast(next === 'auto' ? '自动切换已开启：跟随时间段' : '自动切换已关闭');
+      });
+    }
+    ['miya-bf-dark-start', 'miya-bf-dark-end'].forEach(function (id) {
+      var inp = $(id);
+      if (!inp) return;
+      inp.addEventListener('change', function () {
+        var dm = global.miyaDarkMode;
+        if (!dm) return;
+        var st = dm.get();
+        var patch = {};
+        if (id === 'miya-bf-dark-start') patch.start = inp.value;
+        else patch.end = inp.value;
+        dm.set(patch);
+        syncDarkUi();
+        toast('时间段已更新');
+      });
+    });
+    syncDarkUi();
+
     var iconFrameSw = $('miya-bf-icon-frame-switch');
     if (iconFrameSw) {
       iconFrameSw.addEventListener('click', function () {
