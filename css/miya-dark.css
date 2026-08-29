@@ -547,3 +547,119 @@ html.miya-dark .miya-chat-app .mm-feed-social,
 html.miya-dark .miya-chat-app .mm-feed-action {
   border-color: rgba(255, 255, 255, 0.08) !important;
 }
+
+/* ============================================================
+ * miya-dark.css — v5 全 app 深色适配（蚀月 2026-08-30）
+ * 覆盖：论坛(fr) / 行程(it) / 日记(dy) / 设置(st)
+ * 策略：按根类作用域覆盖变量族 → 整页自动翻深；再补硬编码浅色
+ * ============================================================ */
+
+/* ── 论坛 · 韩系 INS 白系编辑风 ── */
+html.miya-dark .miya-forum-app {
+  --fr-white: #171a1f;
+  --fr-cream: #101216;
+  --fr-ivory: #14171c;
+  --fr-pearl: #1a1d23;
+  --fr-mist: rgba(24, 27, 33, 0.86);
+  --fr-ink: #e6e8ec;
+  --fr-ink-soft: #c4c9d1;
+  --fr-muted: rgba(230, 232, 238, 0.55);
+  --fr-faint: rgba(230, 232, 238, 0.18);
+  --fr-line: rgba(230, 232, 238, 0.08);
+  --fr-line-strong: rgba(230, 232, 238, 0.16);
+  --fr-accent: #d4b98a;
+  --fr-accent-soft: rgba(212, 185, 138, 0.16);
+  --fr-rose: #c98f8f;
+}
+/* 论坛硬编码浅色渐变卡片 */
+html.miya-dark .miya-forum-app .fr-card--hero .fr-card__media {
+  background: linear-gradient(155deg, #2a2d34 0%, #23262c 45%, #1c1f25 100%);
+}
+html.miya-dark .miya-forum-app .fr-card,
+html.miya-dark .miya-forum-app .fr-post,
+html.miya-dark .miya-forum-app .fr-sheet {
+  background: var(--fr-white);
+}
+html.miya-dark .miya-forum-app [style*="background: #faf9f7"],
+html.miya-dark .miya-forum-app [style*="background:#faf9f7"] {
+  background: #101216 !important;
+}
+
+/* ── 行程轨迹 · INS 韩系杂志刊物风 ── */
+html.miya-dark .miya-itinerary-app {
+  --it-bg: #101216;
+  --it-paper: #171a1f;
+  --it-ink: #e6e8ec;
+  --it-soft: rgba(230, 232, 238, 0.6);
+  --it-faint: rgba(230, 232, 238, 0.3);
+  --it-hair: rgba(230, 232, 238, 0.08);
+  --it-hair2: rgba(230, 232, 238, 0.14);
+  --it-accent: #d4b98a;
+  --it-accent-soft: rgba(212, 185, 138, 0.16);
+  --it-blush: rgba(120, 100, 90, 0.28);
+}
+/* 行程硬编码浅色渐变 */
+html.miya-dark .miya-itinerary-app .it-pick-item,
+html.miya-dark .miya-itinerary-app .it-card,
+html.miya-dark .miya-itinerary-app .it-sheet {
+  background: linear-gradient(135deg, #1a1d23, #171a1f);
+}
+
+/* ── 日记 · 编辑风 Ins ── */
+html.miya-dark .miya-diary-app {
+  --dy-bg: #101216;
+  --dy-bg2: #0d0f13;
+  --dy-surface: #171a1f;
+  --dy-ink: #e6e8ec;
+  --dy-soft: rgba(230, 232, 238, 0.62);
+  --dy-faint: rgba(230, 232, 238, 0.38);
+  --dy-mute: rgba(230, 232, 238, 0.12);
+  --dy-hair: rgba(230, 232, 238, 0.08);
+  --dy-chip: #1e2127;
+  --dy-charcoal: #c4c9d1;
+  --dy-accent: #e6e8ec;
+  --dy-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --dy-shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+/* 日记硬编码白底 */
+html.miya-dark .miya-diary-app .dy-card,
+html.miya-dark .miya-diary-app .dy-sheet,
+html.miya-dark .miya-diary-app .dy-surface,
+html.miya-dark .miya-diary-app [class*="dy-card"] {
+  background: var(--dy-surface);
+}
+
+/* ── 设置 · 暖色玻璃刊面 ── */
+html.miya-dark .miya-settings-app {
+  --st-bg: #101216;
+  --st-bg-warm: #14171c;
+  --st-card-bg: rgba(26, 29, 35, 0.9);
+  --st-card-bg-hover: rgba(32, 36, 43, 0.94);
+  --st-text-primary: #e6e8ec;
+  --st-text-secondary: #aab0ba;
+  --st-text-tertiary: #7d848e;
+  --st-text-muted: #5c626b;
+  --st-accent: #6ab0ff;
+  --st-accent-soft: rgba(106, 176, 255, 0.12);
+  --st-accent-warm: #ff8a7a;
+  --st-accent-warm-soft: rgba(255, 138, 122, 0.12);
+  --st-border: rgba(255, 255, 255, 0.05);
+  --st-border-strong: rgba(255, 255, 255, 0.10);
+  --st-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.25);
+  --st-shadow-md: 0 8px 32px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+  --st-shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.6), 0 8px 20px rgba(0, 0, 0, 0.35);
+  --st-shadow-float: 0 30px 80px rgba(0, 0, 0, 0.65), 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+/* 设置硬编码白底（开关圆点 / 选中卡片） */
+html.miya-dark .miya-settings-app .ins-toggle__knob,
+html.miya-dark .miya-settings-app [class*="toggle"] [class*="knob"] {
+  background: #d7dbe2 !important;
+}
+html.miya-dark .miya-settings-app .ins-toggle.is-on {
+  background: #1e2127 !important;
+}
+html.miya-dark .miya-settings-app .miya-settings__card,
+html.miya-dark .miya-settings-app [class*="settings-card"] {
+  background: var(--st-card-bg);
+  border-color: rgba(255, 255, 255, 0.06);
+}
