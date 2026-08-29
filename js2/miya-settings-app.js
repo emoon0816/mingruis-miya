@@ -1502,11 +1502,11 @@
       var u = new URL(t);
       var path = (u.pathname || '/').replace(/\/+$/, '');
       var segs = path.split('/').filter(Boolean);
-      if (segs.length && segs[segs.length - 1].toLowerCase() === 'v1') return u.origin + path;
+      if (segs.length && /^v\d+$/i.test(segs[segs.length - 1])) return u.origin + path;
       if (!path || path === '/') return u.origin + '/v1';
       return u.origin + path + '/v1';
     } catch (e) {
-      return t.toLowerCase().endsWith('/v1') ? t : t + '/v1';
+      return /\/v\d+$/i.test(t) ? t : t + '/v1';
     }
   }
 
