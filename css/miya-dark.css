@@ -663,3 +663,32 @@ html.miya-dark .miya-settings-app [class*="settings-card"] {
   background: var(--st-card-bg);
   border-color: rgba(255, 255, 255, 0.06);
 }
+
+/* ── v5 补充：论坛残留硬编码白底（拍立得卡/导航栏） ── */
+html.miya-dark .miya-forum-app .fr-polaroid {
+  background: var(--fr-white);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 6px 18px rgba(0, 0, 0, 0.45),
+    0 2px 5px rgba(0, 0, 0, 0.3);
+}
+html.miya-dark .miya-forum-app .fr-polaroid__photo {
+  background: #23262d;
+}
+html.miya-dark .miya-forum-app .fr-nav__bar {
+  background: rgba(30, 33, 39, 0.92);
+  border-color: rgba(255, 255, 255, 0.10);
+  box-shadow:
+    0 -1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 8px 32px rgba(0, 0, 0, 0.5);
+}
+html.miya-dark .miya-forum-app .fr-nav__item {
+  color: #aab0ba;
+}
+html.miya-dark .miya-forum-app .fr-nav__item.is-active {
+  color: #e6e8ec;
+}
+html.miya-dark .miya-forum-app .fr-nav__fab {
+  background: #262a31;
+  border-color: rgba(255, 255, 255, 0.14);
+}
