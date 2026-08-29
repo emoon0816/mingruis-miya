@@ -488,3 +488,62 @@ html.miya-dark .miya-settings-app {
   background: #101216 !important;
 }
 /* 联系人 app 已是深色系，不动 */
+
+/* ============================================================
+ * miya-dark.css — v4 高特异性刺头补丁
+ * 主题 CSS 里 .miya-chat-app.theme-soft .soft-tabbar.qq-tabbar
+ * 带 !important（0-0-4-0）——必须用更高特异性 !important 压过。
+ * ============================================================ */
+
+/* 底部导航栏（主题 important 锁死，需 0-0-5-1） */
+html.miya-dark .miya-chat-app.theme-soft .soft-tabbar.qq-tabbar {
+  background: #16181d !important;
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+html.miya-dark .miya-chat-app.theme-soft .soft-tabbar__item.qq-tabbar__item.is-active {
+  color: #eceef2 !important;
+}
+html.miya-dark .miya-chat-app.theme-soft .soft-tabbar__item.qq-tabbar__item {
+  color: #8a909c !important;
+}
+
+/* 顶部栏（若主题锁） */
+html.miya-dark .miya-chat-app.theme-soft .soft-topbar {
+  background: #16181d !important;
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* 消息页筛选胶囊（选中态白底） */
+html.miya-dark .miya-chat-app .soft-filter.is-active {
+  background: rgba(255, 255, 255, 0.14) !important;
+  color: #eceef2 !important;
+}
+html.miya-dark .miya-chat-app .soft-filter {
+  color: #8a909c !important;
+}
+
+/* 快拍 / 圆形快捷按钮 */
+html.miya-dark .miya-chat-app .soft-quick-card__icon,
+html.miya-dark .miya-chat-app .ins-quick-card__icon--new,
+html.miya-dark .miya-chat-app .soft-story__ava,
+html.miya-dark .miya-chat-app .soft-story-ring {
+  background: #22252b !important;
+  border-color: rgba(255, 255, 255, 0.14) !important;
+}
+html.miya-dark .miya-chat-app .soft-quick-card__icon svg,
+html.miya-dark .miya-chat-app .ins-quick-card__icon--new svg {
+  color: #dfe2e8 !important;
+}
+
+/* 空状态文字提亮 */
+html.miya-dark .miya-chat-app .qq-page__empty,
+html.miya-dark .miya-chat-app .soft-empty,
+html.miya-dark .miya-chat-app .qq-empty {
+  color: #a0a6b0 !important;
+}
+
+/* 动态页 feed 卡片内分隔 */
+html.miya-dark .miya-chat-app .mm-feed-social,
+html.miya-dark .miya-chat-app .mm-feed-action {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
