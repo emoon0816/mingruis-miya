@@ -392,3 +392,99 @@ html.miya-dark .mi-ctx-stats {
 html.miya-dark .mq-mine-row {
   background: #1a1d22;
 }
+
+/* ============================================================
+ * miya-dark.css — v3 强化覆盖（!important 压过主题 CSS 与内联样式）
+ * 聊天 app 有多套主题（theme-soft / chat-bf-theme-*），且
+ * applyChatBodyTheme 会把 body 内联成白色 —— 必须 !important。
+ * ============================================================ */
+html.miya-dark body,
+html.miya-dark .phone {
+  background: #0c0e12 !important;
+}
+html.miya-dark .phone__wall {
+  background: #0c0e12 !important;
+}
+
+/* 聊天 app 全家桶（会话列表 / 动态 / 联系人 / 我的 四个页 + 容器） */
+html.miya-dark .miya-chat-app,
+html.miya-dark .miya-chat-app .qq-pages,
+html.miya-dark .miya-chat-app .qq-page,
+html.miya-dark .miya-chat-app .qq-page__scroll,
+html.miya-dark .miya-chat-app .qq-page--msg,
+html.miya-dark .miya-chat-app .qq-page--feed,
+html.miya-dark .miya-chat-app .qq-page--contacts,
+html.miya-dark .miya-chat-app .qq-page--mine,
+html.miya-dark .miya-chat-app.theme-soft,
+html.miya-dark .miya-chat-app.theme-soft .qq-pages,
+html.miya-dark .miya-chat-app.theme-soft .qq-page,
+html.miya-dark .miya-chat-app.theme-soft .qq-page__scroll,
+html.miya-dark .miya-chat-app.theme-soft .qq-page--msg,
+html.miya-dark .miya-chat-app.theme-soft .qq-page--feed,
+html.miya-dark .miya-chat-app.theme-soft .qq-page--contacts,
+html.miya-dark .miya-chat-app.theme-soft .qq-page--mine,
+html.miya-dark .miya-chat-app.theme-soft .qq-chat-swipe__main {
+  background: #14161a !important;
+}
+
+/* 聊天 app 顶栏 / 底栏 / 搜索 / 会话行 */
+html.miya-dark .miya-chat-app .soft-topbar,
+html.miya-dark .miya-chat-app .qq-topbar,
+html.miya-dark .miya-chat-app .soft-tabbar,
+html.miya-dark .miya-chat-app .qq-tabbar,
+html.miya-dark .miya-chat-app .soft-search,
+html.miya-dark .miya-chat-app .qq-search {
+  background: #16181d !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+html.miya-dark .miya-chat-app .soft-search input,
+html.miya-dark .miya-chat-app .qq-search input {
+  background: #1b1e24 !important;
+  color: #e6e8ec !important;
+}
+html.miya-dark .miya-chat-app .soft-thread,
+html.miya-dark .miya-chat-app .qq-chat-item,
+html.miya-dark .miya-chat-app .qq-chat-item--pinned,
+html.miya-dark .miya-chat-app .soft-menu,
+html.miya-dark .miya-chat-app .soft-menu__item,
+html.miya-dark .miya-chat-app .soft-stats,
+html.miya-dark .miya-chat-app .soft-profile-card,
+html.miya-dark .miya-chat-app .soft-quick-grid,
+html.miya-dark .miya-chat-app .soft-quick-card,
+html.miya-dark .miya-chat-app .soft-fab,
+html.miya-dark .miya-chat-app .mm-feed-card,
+html.miya-dark .miya-chat-app .soft-feed-card {
+  background: #1a1d22 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #e6e8ec !important;
+}
+html.miya-dark .miya-chat-app .soft-thread__name,
+html.miya-dark .miya-chat-app .qq-chat-item__name,
+html.miya-dark .miya-chat-app .soft-topbar__title {
+  color: #eceef2 !important;
+}
+html.miya-dark .miya-chat-app .soft-thread__preview,
+html.miya-dark .miya-chat-app .qq-chat-item__preview,
+html.miya-dark .miya-chat-app .soft-thread__time,
+html.miya-dark .miya-chat-app .qq-chat-item__time {
+  color: #9aa1ac !important;
+}
+html.miya-dark .miya-chat-app .soft-tabbar__item,
+html.miya-dark .miya-chat-app .qq-tabbar__item {
+  color: #9aa1ac !important;
+}
+html.miya-dark .miya-chat-app .soft-tabbar__item.is-active,
+html.miya-dark .miya-chat-app .qq-tabbar__item.is-active {
+  color: #eceef2 !important;
+}
+html.miya-dark .miya-chat-app .soft-search input::placeholder,
+html.miya-dark .miya-chat-app .qq-search input::placeholder {
+  color: #565c66 !important;
+}
+
+/* 设置 / 世界书 根容器 */
+html.miya-dark .miya-worldbook-app,
+html.miya-dark .miya-settings-app {
+  background: #101216 !important;
+}
+/* 联系人 app 已是深色系，不动 */
