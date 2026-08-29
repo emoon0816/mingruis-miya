@@ -157,7 +157,7 @@
     },
     memoryUi: {
       css: ['css/miya-memory.css?v=10'],
-      js: ['js2/miya-memory-app.js?v=11']
+      js: ['js2/miya-memory-app.js?v=12']
     },
     matchUi: {
       css: ['css/miya-match.css?v=4'],

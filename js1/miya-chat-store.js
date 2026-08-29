@@ -4186,6 +4186,23 @@
                 });
         },
 
+        /**
+         * 轻量可见消息：只过滤不 normalize 不 sort（蚀月定制，记忆页统计/轮次用）。
+         * 全量 normalize+sort 在几万条消息时会把主线程锁死（点开票根卡死、返回键失效）。
+         * 调用方只需 role/deleted/replyBatchId/systemKind/narrationFrom 等原始字段时用这个。
+         */
+        getMessagesLight: function (chatId) {
+            if (!metaCache) return [];
+            var arr = metaCache.messagesByChat && metaCache.messagesByChat[chatId];
+            if (!Array.isArray(arr)) return [];
+            var out = [];
+            for (var i = 0; i < arr.length; i++) {
+                var m = arr[i];
+                if (m && !m.deleted && !m.offlineMeet && !isMomentsMemoryRow(m)) out.push(m);
+            }
+            return out;
+        },
+
         /** 聊天 UI：只 normalize 最近 N 条，避免大线程进入时卡顿 */
         getRecentVisibleMessages: function (chatId, limit) {
             var arr = metaCache.messagesByChat && metaCache.messagesByChat[chatId];

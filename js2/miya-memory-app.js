@@ -178,7 +178,10 @@
     var contact = chat && st.findContact(chat.contactId);
     var name = (contact && (contact.remarkName || contact.name)) || '未命名';
     var settings = st.getChatSettings(chatId);
-    var historyLen = st.getMessages(chatId).length;
+    // 蚀月修复：用轻量路径取消息（只 filter 不 normalize 不 sort），
+    // 几万条消息时全量 getMessages 会把主线程锁死 → 点开票根卡死、返回键失效
+    var lightMsgs = st.getMessagesLight ? st.getMessagesLight(chatId) : st.getMessages(chatId);
+    var historyLen = lightMsgs.length;
     var sumList = settings.summaryList || [];
     var megaList = settings.megaSummaryList || [];
     var charMemList = settings.charMemoryList || [];
@@ -191,7 +194,7 @@
     var memTrigger = settings.memoryAutoRoundTrigger != null ? settings.memoryAutoRoundTrigger : 0;
     var lastMemEnd = memMod && memMod.lastCharMemoryEnd ? memMod.lastCharMemoryEnd(settings) : 0;
     var pendingRounds = memMod && memMod.countAssistantRounds
-      ? memMod.countAssistantRounds(st.getMessages(chatId), lastMemEnd) : 0;
+      ? memMod.countAssistantRounds(lightMsgs, lastMemEnd) : 0;
 
     var sumBlocks = sumList.map(function (row, i) {
       var coveredTag = covered[row.id]

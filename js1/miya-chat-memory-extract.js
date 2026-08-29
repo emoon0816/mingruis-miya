@@ -267,7 +267,8 @@
         var settings = store.getChatSettings(chatId);
         var trigger = clampInt(settings.memoryAutoRoundTrigger, 0, 500, 0);
         if (trigger <= 0) return;
-        var history = store.getMessages(chatId);
+        // 蚀月修复：仅统计轮次，用轻量路径避免全量 normalize+sort 卡主线程
+        var history = store.getMessagesLight ? store.getMessagesLight(chatId) : store.getMessages(chatId);
         if (!history.length) return;
         var last = lastCharMemoryEnd(settings);
         if (last > history.length) last = 0;
