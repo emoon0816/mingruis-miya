@@ -3,6 +3,7 @@
  * 状态：{ mode: 'off'|'on'|'auto', start: '20:00', end: '07:00' } → kv key 'miya-dark-mode'
  * auto 模式跟随系统时间：start~end 区间内深色（支持跨午夜），每 30s 检查一次。
  * 关键：--ink 系列会被 applyTextColor / desk-custom 内联覆盖，此处用 setProperty(..., 'important') 强制。
+ * UI 绑定自包含：美化 App 的深色开关/自动开关/时间段由本文件负责（不依赖 beautify-app 加载时序）。
  */
 (function (global) {
   'use strict';
@@ -14,6 +15,7 @@
   var state = Object.assign({}, DEFAULT_STATE);
   var ready = false;
   var timer = null;
+  var bound = false;
 
   /** 内联强制变量（深色开启时 important 写入，关闭时移除恢复） */
   var DARK_VARS = {
@@ -65,10 +67,77 @@
     }
   }
 
+  function $id(id) {
+    return document.getElementById(id);
+  }
+
+  function syncUi() {
+    var nowDark = document.documentElement.classList.contains('miya-dark');
+    var darkSw = $id('miya-bf-dark-switch');
+    var autoSw = $id('miya-bf-dark-auto-switch');
+    var status = $id('miya-bf-dark-status');
+    var autoStatus = $id('miya-bf-dark-auto-status');
+    var start = $id('miya-bf-dark-start');
+    var end = $id('miya-bf-dark-end');
+    var row = $id('miya-bf-dark-time-row');
+    if (darkSw) {
+      darkSw.classList.toggle('is-on', state.mode === 'on' || (state.mode === 'auto' && nowDark));
+      darkSw.setAttribute('aria-checked', darkSw.classList.contains('is-on') ? 'true' : 'false');
+    }
+    if (autoSw) {
+      autoSw.classList.toggle('is-on', state.mode === 'auto');
+      autoSw.setAttribute('aria-checked', state.mode === 'auto' ? 'true' : 'false');
+    }
+    if (status) {
+      if (state.mode === 'on') status.textContent = '已开启';
+      else if (state.mode === 'auto') status.textContent = nowDark ? '自动 · 当前深色' : '自动 · 当前浅色';
+      else status.textContent = '已关闭';
+    }
+    if (autoStatus) {
+      autoStatus.textContent = state.mode === 'auto'
+        ? '开启 · ' + state.start + ' – ' + state.end
+        : '关闭 · 手动控制';
+    }
+    if (start) start.value = state.start || '20:00';
+    if (end) end.value = state.end || '07:00';
+    if (row) row.hidden = state.mode !== 'auto';
+  }
+
+  function bindUi() {
+    if (bound) return;
+    bound = true;
+    var darkSw = $id('miya-bf-dark-switch');
+    if (darkSw) {
+      darkSw.addEventListener('click', function () {
+        var next = state.mode === 'on' ? 'off' : 'on';
+        set({ mode: next });
+      });
+    }
+    var autoSw = $id('miya-bf-dark-auto-switch');
+    if (autoSw) {
+      autoSw.addEventListener('click', function () {
+        var next = state.mode === 'auto' ? 'off' : 'auto';
+        set({ mode: next });
+      });
+    }
+    ['miya-bf-dark-start', 'miya-bf-dark-end'].forEach(function (id) {
+      var inp = $id(id);
+      if (!inp) return;
+      inp.addEventListener('change', function () {
+        var patch = {};
+        if (id === 'miya-bf-dark-start') patch.start = inp.value;
+        else patch.end = inp.value;
+        set(patch);
+      });
+    });
+    syncUi();
+  }
+
   function apply() {
     var on = shouldDark();
     document.documentElement.classList.toggle('miya-dark', on);
     writeVars(on);
+    if (ready) syncUi();
     return on;
   }
 
@@ -97,11 +166,13 @@
       state = normalize(raw);
       ready = true;
       apply();
+      bindUi();
       startTimer();
       return get();
     }).catch(function () {
       ready = true;
       apply();
+      bindUi();
       return get();
     });
   }
