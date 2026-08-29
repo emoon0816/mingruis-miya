@@ -1299,6 +1299,8 @@
         var blocks = [];
         var timeRules = aw.buildTimeAwarenessRules(chatSettings, history, profile);
         if (timeRules) blocks.push(timeRules);
+        var musicNow = buildNowPlayingBlock();
+        if (musicNow) blocks.push(musicNow);
         var itBr = global.miyaItineraryBridge;
         if (itBr && typeof itBr.buildChatItineraryBlock === 'function' && contact) {
             var itBlock = itBr.buildChatItineraryBlock(contact, chatSettings);
@@ -1309,6 +1311,22 @@
         var weatherRules = aw.buildWeatherAwarenessRules(chatSettings);
         if (weatherRules) blocks.push(weatherRules);
         return blocks;
+    }
+
+    /** 用户正在听（听歌联动）：读音乐引擎快照，仅在播放中注入 */
+    function buildNowPlayingBlock() {
+        try {
+            var eng = global.miyaMusicEngine;
+            if (!eng || typeof eng.buildSnapshot !== 'function') return '';
+            var snap = eng.buildSnapshot();
+            if (!snap || !snap.isPlaying) return '';
+            var title = String(snap.title || '').trim();
+            var artist = String(snap.artist || '').trim();
+            if (!title) return '';
+            return '【用户正在听】\n' + title + (artist ? ' - ' + artist : '');
+        } catch (e) {
+            return '';
+        }
     }
 
     /**
