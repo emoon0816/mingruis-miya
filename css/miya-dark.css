@@ -181,3 +181,214 @@ html.miya-dark .desk--p3,
 html.miya-dark .desk--p4 {
   color: rgba(235, 237, 241, 0.92);
 }
+
+/* ============================================================
+ * miya-dark.css — 扩展覆盖 v2（各 app 根类变量族 + 硬编码补丁）
+ * 变量定义在根类上的（--st-*/--vf-*），必须用 html.miya-dark .根类 覆盖
+ * ============================================================ */
+
+/* ── 通用 ins 变量族（:root 上，html.miya-dark 直接覆盖生效） ── */
+html.miya-dark {
+  --ins-bg: #0e1014;
+  --ins-surface: rgba(28, 30, 36, 0.92);
+  --ins-surface-2: #1a1d22;
+  --ins-ink: rgba(232, 234, 238, 0.92);
+  --ins-ink-dim: rgba(158, 164, 174, 0.82);
+  --ins-accent: #e6e8ec;
+  --ins-accent-deep: #a8adb8;
+  --ins-rose: #9aa0aa;
+  --ins-rose-deep: #cfd3da;
+  --ins-champagne: #e6e8ec;
+  --ins-gold: #d6dae0;
+  --ins-gold-soft: rgba(255, 255, 255, 0.12);
+  --ins-cream: #1a1d22;
+  --ins-glass-line: rgba(255, 255, 255, 0.10);
+  --ins-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+
+  /* 聊天设置 mi 变量族（:root 上） */
+  --mi-bg: #101216;
+  --mi-ink: #e8eaee;
+  --mi-sub: #9aa1ac;
+  --mi-white: #14161a;
+  --mi-line: rgba(255, 255, 255, 0.10);
+  --mi-line-strong: rgba(255, 255, 255, 0.18);
+  --mi-accent: #e6e8ec;
+  --mi-pink: #e6e8ec;
+  --mi-lilac: rgba(255, 255, 255, 0.06);
+  --mi-mint: rgba(255, 255, 255, 0.08);
+  --mi-danger: #d6dae0;
+
+  /* 音乐 ncm 变量族（:root 上） */
+  --ncm-page-bg: #101216;
+  --ncm-text: #e6e8ec;
+  --ncm-text-dim: rgba(230, 232, 236, 0.45);
+}
+
+/* ── st 变量族（世界书 / 设置，定义在根类上，需加根类选择器） ── */
+html.miya-dark .miya-worldbook-app,
+html.miya-dark .miya-settings-app,
+html.miya-dark .mi-set-page {
+  --st-bg: #101216;
+  --st-bg-warm: #14161a;
+  --st-card-bg: rgba(30, 33, 39, 0.80);
+  --st-card-bg-hover: rgba(38, 42, 49, 0.92);
+  --st-text-primary: #e8eaee;
+  --st-text-secondary: #a0a6b0;
+  --st-text-tertiary: #7a818c;
+  --st-text-muted: #6b7280;
+  --st-border: rgba(255, 255, 255, 0.10);
+  --st-border-strong: rgba(255, 255, 255, 0.18);
+  --st-accent-soft: rgba(255, 255, 255, 0.08);
+  --st-accent-warm: #8a90a0;
+  --st-accent-warm-soft: rgba(255, 255, 255, 0.06);
+  --st-shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.3);
+  --st-shadow-md: 0 6px 22px rgba(0, 0, 0, 0.4);
+  --st-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+}
+
+/* ── vf 变量族（vault folio，根类覆盖） ── */
+html.miya-dark .ins-vault--folio {
+  --vf-paper: #101216;
+  --vf-paper-2: #15181d;
+  --vf-ink: #e6e8ec;
+  --vf-muted: rgba(230, 232, 236, 0.46);
+  --vf-faint: rgba(230, 232, 236, 0.24);
+  --vf-line: rgba(255, 255, 255, 0.09);
+  --vf-line-strong: rgba(255, 255, 255, 0.16);
+  --vf-accent: #d6dae0;
+  --vf-accent-soft: rgba(255, 255, 255, 0.08);
+  --vf-rule: rgba(255, 255, 255, 0.05);
+  --vf-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+/* ── 硬编码补丁：聊天 app 会话列表 / 设置表单 / 世界书卡片 ── */
+html.miya-dark .miya-chat-app {
+  background: #14161a;
+}
+html.miya-dark .miya-chat-app .ins-search,
+html.miya-dark .miya-chat-app input[type="search"] {
+  background: #1b1e24;
+  color: #e6e8ec;
+}
+html.miya-dark .st-form-card,
+html.miya-dark .mi-set-zone,
+html.miya-dark .mi-wb-sort-panel {
+  background: rgba(30, 33, 39, 0.96);
+}
+html.miya-dark .ins-icon-btn,
+html.miya-dark .ins-st-cell,
+html.miya-dark .ins-bento-cell {
+  background: #1b1e24;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: var(--ins-ink);
+}
+html.miya-dark .ins-textarea,
+html.miya-dark .ins-text-input,
+html.miya-dark .ins-select {
+  background: #121418;
+  color: #e6e8ec;
+  border-color: rgba(255, 255, 255, 0.14);
+}
+html.miya-dark .ins-chip,
+html.miya-dark .ins-ico-btn {
+  background: rgba(30, 33, 39, 0.92);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: var(--ins-ink);
+}
+html.miya-dark .ins-mm-segment {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.10);
+}
+html.miya-dark .miya-dialog-card {
+  background: linear-gradient(160deg, #1c1f25 0%, #14161a 100%);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+html.miya-dark .miya-dialog-textarea {
+  background: #121418;
+  color: #e6e8ec;
+}
+html.miya-dark .ins-wb-card,
+html.miya-dark .ins-wb-editor {
+  background: linear-gradient(168deg, #1c1f25 0%, #14161a 100%);
+}
+html.miya-dark .ins-wb-editor-foot {
+  background: rgba(20, 22, 26, 0.92);
+}
+html.miya-dark .ins-atelier-splash-card,
+html.miya-dark .ins-atelier-type-card--specimen {
+  background: linear-gradient(160deg, #1c1f25 0%, #14161a 100%);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+html.miya-dark .ins-atelier-rail {
+  background: linear-gradient(180deg, rgba(24, 26, 31, 0.95) 0%, rgba(18, 20, 24, 0.98) 100%);
+  border-right-color: rgba(255, 255, 255, 0.10);
+}
+html.miya-dark .ins-atelier-frame,
+html.miya-dark .ins-atelier-frame-screen {
+  background: linear-gradient(145deg, #1a1d22 0%, #121418 100%);
+}
+html.miya-dark .ins-atelier-dismiss {
+  background: rgba(28, 30, 36, 0.92);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+/* ── 硬编码补丁：音乐 app ── */
+html.miya-dark .ncm-search-bar {
+  background: #1b1e24;
+}
+html.miya-dark .ncm-sheet {
+  background: #1a1d22;
+}
+html.miya-dark .ncm-mine-body {
+  background: #14161a;
+}
+html.miya-dark .ncm-pl-detail {
+  background: #14161a;
+}
+html.miya-dark .ncm-mini-player {
+  background: rgba(30, 33, 39, 0.95);
+}
+html.miya-dark .ncm-sheet-btn {
+  background: #22252b;
+  border-color: rgba(255, 255, 255, 0.10);
+  color: #e6e8ec;
+}
+html.miya-dark .ncm-sheet-btn--ghost {
+  background: #1a1d22;
+}
+
+/* ── 硬编码补丁：聊天设置页细碎 ── */
+html.miya-dark .mi-pill-note,
+html.miya-dark .mi-search,
+html.miya-dark .mi-ctx-src-list,
+html.miya-dark .mi-bf-tile,
+html.miya-dark .mi-copy-bar,
+html.miya-dark .mi-bf-block--copy {
+  background: #1b1e24;
+}
+html.miya-dark .mi-bf-block {
+  background: rgba(28, 30, 36, 0.9);
+}
+html.miya-dark .mi-bf-preview,
+html.miya-dark .mi-bg-stage,
+html.miya-dark .mi-img-slot {
+  background: #1b1e24;
+}
+html.miya-dark .mi-bf-block--applied {
+  background: #20232a;
+}
+html.miya-dark .mi-input--readonly {
+  background: #1b1e24;
+  color: #9aa1ac;
+}
+html.miya-dark .mi-ctx-inject--warn {
+  background: rgba(120, 90, 20, 0.18);
+  color: #d9b45c;
+  border-color: rgba(200, 160, 60, 0.3);
+}
+html.miya-dark .mi-ctx-stats {
+  background: linear-gradient(135deg, #1a1d22 0%, #14161a 100%);
+}
+html.miya-dark .mq-mine-row {
+  background: #1a1d22;
+}
