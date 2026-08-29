@@ -304,7 +304,7 @@
     cat.blank_4x2_5 = { w: 4, h: 2, label: '浮光拼贴', widget: 'glassdeck', editable: true };
     cat.blank_4x2_6 = { w: 4, h: 2, label: '双头像连线', widget: 'avalink', editable: true };
     cat.blank_4x2_8 = { w: 4, h: 2, label: '滚动歌词', widget: 'scrolllyrics', editable: true };
-    cat.blank_4x2_9 = { w: 4, h: 2, label: '大数字时钟', widget: 'bigtime', editable: false };
+    cat.blank_4x2_10 = { w: 4, h: 2, label: '大数字时钟', widget: 'bigtime', editable: false };
     cat.blank_4x3_1 = { w: 4, h: 3, label: '半醒手记', widget: 'profile', editable: true };
     cat.blank_4x3_2 = { w: 4, h: 3, label: '照片墙', widget: 'photowall', editable: true };
     cat.blank_4x3_3 = { w: 4, h: 3, label: '月历志', widget: 'calendar', editable: true };
@@ -4598,7 +4598,7 @@
     }
 
     addSection('4×1', ['blank_4x1_1', 'blank_4x1_2', 'blank_4x1_3', 'blank_4x1_8', 'blank_4x1_4', 'blank_4x1_5', 'blank_4x1_6', 'blank_4x1_7'].concat(customIdsForSize(4, 1)));
-    addSection('4×2', ['blank_4x2_1', 'blank_4x2_2', 'blank_4x2_3', 'blank_4x2_4', 'blank_4x2_5', 'blank_4x2_6', 'blank_4x2_8'].concat(customIdsForSize(4, 2)));
+    addSection('4×2', ['blank_4x2_1', 'blank_4x2_2', 'blank_4x2_3', 'blank_4x2_4', 'blank_4x2_5', 'blank_4x2_6', 'blank_4x2_8', 'blank_4x2_10'].concat(customIdsForSize(4, 2)));
     addSection('4×3', ['blank_4x3_1', 'blank_4x3_2', 'blank_4x3_3', 'blank_4x3_4', 'blank_4x3_5'].concat(customIdsForSize(4, 3)));
     addSection('4×4', ['blank_4x4_1', 'blank_4x4_2', 'blank_4x4_3', 'blank_4x4_4'].concat(customIdsForSize(4, 4)));
     addSection('2×1', ['blank_2x1_1', 'blank_2x1_2', 'blank_2x1_3', 'blank_2x1_4', 'blank_2x1_5', 'blank_2x1_6'].concat(customIdsForSize(2, 1)));
