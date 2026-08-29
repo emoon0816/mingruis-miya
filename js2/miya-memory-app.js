@@ -230,7 +230,7 @@
     var memStore = global.miyaMemoryStore;
     var coreList = memStore ? memStore.syncCore(chatId) : [];
     var archiveList = memStore ? memStore.syncArchive(chatId) : [];
-    if (memStore && typeof memStore.ensureLoaded === 'function') {
+    if (memStore && typeof memStore.ensureLoaded === 'function' && !memStore.isLoaded(chatId)) {
       memStore.ensureLoaded(chatId).then(function () {
         if (selectedChatId === chatId && !$('miya-memory-app').hidden) {
           renderSummaryDetail(chatId);

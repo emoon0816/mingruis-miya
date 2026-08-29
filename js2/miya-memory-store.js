@@ -69,6 +69,12 @@
     return e ? e.archive : [];
   }
 
+  /** 是否已加载（供渲染层防重入：避免 loaded 后立即 resolve 导致递归重渲染） */
+  function isLoaded(chatId) {
+    var e = cache[chatId];
+    return !!(e && e.loaded);
+  }
+
   /** 异步写核心记忆（写内存 + 持久化） */
   function saveCore(chatId, list) {
     var e = entry(chatId);
@@ -98,6 +104,7 @@
 
   global.miyaMemoryStore = {
     ensureLoaded: ensureLoaded,
+    isLoaded: isLoaded,
     syncCore: syncCore,
     syncArchive: syncArchive,
     saveCore: saveCore,
