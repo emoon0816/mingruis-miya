@@ -516,6 +516,30 @@
         countAssistantRounds: countAssistantRounds,
         adjustCharMemoryIndicesAfterPurge: adjustCharMemoryIndicesAfterPurge,
         buildCharMemoryContextBlock: buildCharMemoryContextBlock,
+        forceBuildCoreMemory: function (chatId) {
+            var cid = String(chatId || '').trim();
+            if (!cid || coreGenerating[cid]) return Promise.resolve(false);
+            var store = global.miyaChatStore;
+            if (!store) return Promise.resolve(false);
+            var settings = store.getChatSettings(cid);
+            var list = Array.isArray(settings.charMemoryList) ? settings.charMemoryList : [];
+            if (!list.length) return Promise.resolve(false);
+            var memStore = global.miyaMemoryStore;
+            if (!memStore) return Promise.resolve(false);
+            coreGenerating[cid] = true;
+            var ready = typeof memStore.ensureLoaded === 'function'
+                ? memStore.ensureLoaded(cid)
+                : Promise.resolve();
+            return ready.then(function () {
+                return performCoreBuild(cid, list);
+            }).then(function (ok) {
+                coreGenerating[cid] = false;
+                return ok;
+            }).catch(function () {
+                coreGenerating[cid] = false;
+                return false;
+            });
+        },
         isGenerating: function (chatId) {
             return !!generating[String(chatId || '')];
         }

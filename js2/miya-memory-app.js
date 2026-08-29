@@ -283,6 +283,7 @@
           '<div class="mm-console__actions">' +
             '<button type="button" class="mm-btn mm-btn--fill" id="miya-mem-run-sum">生成分镜</button>' +
             '<button type="button" class="mm-btn" id="miya-mem-run-mega">生成合卷</button>' +
+            '<button type="button" class="mm-btn" id="miya-mem-build-core">浓缩核心记忆</button>' +
           '</div>' +
         '</div>' +
       '</section>' +
@@ -400,6 +401,10 @@
       }
       if (t.id === 'miya-mem-run-sum' || t.closest('#miya-mem-run-sum')) {
         runSummary();
+        return;
+      }
+      if (t.id === 'miya-mem-build-core' || t.closest('#miya-mem-build-core')) {
+        runBuildCore();
         return;
       }
       if (t.id === 'miya-mem-save-auto' || t.closest('#miya-mem-save-auto')) {
@@ -563,6 +568,26 @@
     global.MiyaChatSummary.performSummary(selectedChatId, { start: start, end: end })
       .then(function (ok) {
         if (ok) toast('分镜完成');
+        renderSummaryDetail(selectedChatId);
+        renderRoleList();
+      });
+  }
+
+  function runBuildCore() {
+    if (!selectedChatId || !global.MiyaChatMemoryExtract) return;
+    var st = global.miyaChatStore;
+    if (!st) return;
+    var settings = st.getChatSettings(selectedChatId);
+    var list = settings.charMemoryList || [];
+    if (!list.length) {
+      toast('还没有角色记忆，先提炼几轮再来浓缩');
+      return;
+    }
+    toast('正在浓缩核心记忆…');
+    global.MiyaChatMemoryExtract.forceBuildCoreMemory(selectedChatId)
+      .then(function (ok) {
+        if (ok) toast('核心记忆已浓缩');
+        else toast('浓缩失败（可能 API 未配置或结果为空）');
         renderSummaryDetail(selectedChatId);
         renderRoleList();
       });
