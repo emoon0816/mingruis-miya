@@ -156,8 +156,8 @@
       js: ['js1/miya-cstore-app.js?v=4']
     },
     memoryUi: {
-      css: ['css/miya-memory.css?v=8'],
-      js: ['js2/miya-memory-app.js?v=9']
+      css: ['css/miya-memory.css?v=9'],
+      js: ['js2/miya-memory-app.js?v=10']
     },
     matchUi: {
       css: ['css/miya-match.css?v=4'],

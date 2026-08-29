@@ -226,6 +226,29 @@
       '</article>';
     });
 
+    // —— 蚀月定制：核心记忆 / 归档记忆（防滚雪球分层）——
+    var memStore = global.miyaMemoryStore;
+    var coreList = memStore ? memStore.syncCore(chatId) : [];
+    var archiveList = memStore ? memStore.syncArchive(chatId) : [];
+    if (memStore && typeof memStore.ensureLoaded === 'function') {
+      memStore.ensureLoaded(chatId).then(function () {
+        if (selectedChatId === chatId && !$('miya-memory-app').hidden) {
+          renderSummaryDetail(chatId);
+          renderRoleList();
+        }
+      });
+    }
+    var coreBlocks = coreList.map(function (row, i) {
+      var body = String((row && (row.content || row.text)) || '').trim();
+      if (!body) return '';
+      return '<article class="mm-clip mm-clip--core">' +
+        '<header class="mm-clip__head">' +
+          '<strong>核心记忆 ' + (i + 1) + ' · 固定注入</strong>' +
+        '</header>' +
+        '<div class="mm-clip__body">' + esc(body).replace(/\n/g, '<br>') + '</div>' +
+      '</article>';
+    }).filter(Boolean);
+
     panel.innerHTML =
       '<header class="mm-hero">' +
         '<h2 class="mm-hero__name">' + esc(name) + '</h2>' +
@@ -234,6 +257,8 @@
           '<span class="mm-hero__stat">分镜<em>' + sumList.length + '</em></span>' +
           '<span class="mm-hero__stat">合卷<em>' + megaList.length + '</em></span>' +
           '<span class="mm-hero__stat">角色记忆<em>' + charMemList.length + '</em></span>' +
+          '<span class="mm-hero__stat">核心<em>' + coreList.length + '</em></span>' +
+          '<span class="mm-hero__stat">归档<em>' + archiveList.length + '</em></span>' +
         '</p>' +
       '</header>' +
       '<section class="mm-console mm-console--auto" aria-label="角色记忆自动提炼">' +
@@ -280,6 +305,14 @@
       '<section class="mm-chapter">' +
         '<div class="mm-chapter__head">' +
           '<span class="mm-chapter__no">03</span>' +
+          '<h3 class="mm-chapter__title">核心记忆</h3>' +
+          '<span class="mm-chapter__sub">' + coreList.length + ' 条 · 固定注入不遗忘</span>' +
+        '</div>' +
+        buildTimelineCards(coreBlocks, { emptyLabel: '暂无核心记忆（角色记忆攒够 8 条会自动浓缩）' }) +
+      '</section>' +
+      '<section class="mm-chapter">' +
+        '<div class="mm-chapter__head">' +
+          '<span class="mm-chapter__no">04</span>' +
           '<h3 class="mm-chapter__title">角色记忆</h3>' +
           '<span class="mm-chapter__sub">' + charMemList.length + ' 条 · 自动/角色视角</span>' +
         '</div>' +

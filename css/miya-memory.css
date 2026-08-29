@@ -773,6 +773,45 @@
   background: var(--mm-paper);
 }
 
+/* 蚀月定制：核心记忆卡片（暖金描边 + 核徽） */
+.mm-clip--core {
+  border: 2px solid var(--mm-line-soft);
+  border-left: 4px solid rgba(255, 196, 110, 0.85);
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  transform: none !important;
+  text-align: left !important;
+  box-sizing: border-box;
+}
+.mm-clip--core .mm-clip__head,
+.mm-clip--core:nth-child(even) .mm-clip__head {
+  flex-direction: row;
+}
+.mm-clip--core .mm-clip__body {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.mm-clip--core::before {
+  content: "核";
+  position: absolute;
+  top: -10px;
+  left: 12px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mm-display);
+  font-size: 11px;
+  border: 2px solid rgba(255, 196, 110, 0.85);
+  border-radius: 50%;
+  background: var(--mm-paper);
+  color: #a86a00;
+}
+
 .mm-console__actions {
   display: flex;
   flex-wrap: wrap;
