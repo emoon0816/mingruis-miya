@@ -1166,3 +1166,64 @@
   aspect-ratio: 4 / 2;
   min-height: 88px;
 }
+
+/* 大数字时钟（蚀月定制）*/
+.desk-custom__wg--bigtime {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #17171d 0%, #23232d 55%, #2e2e3a 100%);
+  border-radius: 22px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.desk-custom__wg--bigtime::after {
+  content: '';
+  position: absolute;
+  top: -45%;
+  right: -18%;
+  width: 70%;
+  height: 130%;
+  background: radial-gradient(circle at center, rgba(110, 150, 255, 0.20) 0%, transparent 62%);
+  pointer-events: none;
+}
+.wg-4x2-bigtime {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: #f2f2f5;
+  text-align: center;
+  user-select: none;
+}
+.wg-4x2-bigtime__time {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  font-family: 'Outfit', 'DIN Alternate', -apple-system, 'SF Pro Display', sans-serif;
+  font-weight: 200;
+  letter-spacing: 1px;
+  line-height: 1;
+  margin: 0;
+}
+.wg-4x2-bigtime__hm {
+  font-size: 54px;
+  font-variant-numeric: tabular-nums;
+}
+.wg-4x2-bigtime__sec {
+  font-size: 25px;
+  font-weight: 300;
+  color: #93a3cc;
+  font-variant-numeric: tabular-nums;
+  min-width: 2ch;
+}
+.wg-4x2-bigtime__date {
+  font-size: 13px;
+  font-weight: 400;
+  color: #b7bfd6;
+  letter-spacing: 3px;
+  margin: 0;
+}

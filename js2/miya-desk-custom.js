@@ -304,6 +304,7 @@
     cat.blank_4x2_5 = { w: 4, h: 2, label: '浮光拼贴', widget: 'glassdeck', editable: true };
     cat.blank_4x2_6 = { w: 4, h: 2, label: '双头像连线', widget: 'avalink', editable: true };
     cat.blank_4x2_8 = { w: 4, h: 2, label: '滚动歌词', widget: 'scrolllyrics', editable: true };
+    cat.blank_4x2_9 = { w: 4, h: 2, label: '大数字时钟', widget: 'bigtime', editable: false };
     cat.blank_4x3_1 = { w: 4, h: 3, label: '半醒手记', widget: 'profile', editable: true };
     cat.blank_4x3_2 = { w: 4, h: 3, label: '照片墙', widget: 'photowall', editable: true };
     cat.blank_4x3_3 = { w: 4, h: 3, label: '月历志', widget: 'calendar', editable: true };
@@ -3656,6 +3657,46 @@
     return el;
   }
 
+  function createBigtimeWidgetEl() {
+    var el = document.createElement('article');
+    el.className = 'wg wg-4x2 wg-4x2--bigtime desk-custom__wg desk-custom__wg--bigtime';
+    el.setAttribute('aria-label', '大数字时钟');
+    el.innerHTML =
+      '<div class="wg-4x2-bigtime">' +
+        '<p class="wg-4x2-bigtime__time">' +
+          '<span class="wg-4x2-bigtime__hm">--:--</span>' +
+          '<span class="wg-4x2-bigtime__sec">--</span>' +
+        '</p>' +
+        '<p class="wg-4x2-bigtime__date">----</p>' +
+      '</div>' +
+      '<button type="button" class="desk-custom__wg-remove" aria-label="移除小组件">×</button>';
+    startBigtimeTicker();
+    paintBigtimeWidgetEl(el);
+    return el;
+  }
+
+  function paintBigtimeWidgetEl(el) {
+    var now = new Date();
+    var pad = function (n) { return n < 10 ? '0' + n : '' + n; };
+    var hm = el.querySelector('.wg-4x2-bigtime__hm');
+    var sec = el.querySelector('.wg-4x2-bigtime__sec');
+    var dateEl = el.querySelector('.wg-4x2-bigtime__date');
+    if (hm) hm.textContent = pad(now.getHours()) + ':' + pad(now.getMinutes());
+    if (sec) sec.textContent = pad(now.getSeconds());
+    if (dateEl) {
+      var weeks = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+      dateEl.textContent = (now.getMonth() + 1) + '月' + now.getDate() + '日 ' + weeks[now.getDay()];
+    }
+  }
+
+  function startBigtimeTicker() {
+    if (window.__miyaBigtimeTicker) return;
+    window.__miyaBigtimeTicker = setInterval(function () {
+      var els = document.querySelectorAll('.desk-custom__wg--bigtime');
+      for (var i = 0; i < els.length; i++) paintBigtimeWidgetEl(els[i]);
+    }, 1000);
+  }
+
   function createInstuneWidgetEl() {
     var el = document.createElement('article');
     el.className = 'wg wg-2x1 wg-2x1--instune desk-custom__wg desk-custom__wg--instune';
@@ -3789,6 +3830,7 @@
     if (def.widget === 'folder') return createFolderWidgetEl();
     if (def.widget === 'miniplayer') return createMiniplayerWidgetEl();
     if (def.widget === 'insclock') return createInsclockWidgetEl();
+    if (def.widget === 'bigtime') return createBigtimeWidgetEl();
     if (def.widget === 'instune') return createInstuneWidgetEl();
     if (def.widget === 'insquote') return createInsquoteWidgetEl();
     if (def.widget === 'insmood') return createInsmoodWidgetEl();
