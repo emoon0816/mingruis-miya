@@ -1553,7 +1553,10 @@
       baseUrl: ($('miya-st-chat-base') || {}).value ? $('miya-st-chat-base').value.trim() : '',
       apiKey: ($('miya-st-chat-key') || {}).value ? $('miya-st-chat-key').value.trim() : '',
       model: ($('miya-st-chat-model') || {}).value || '',
-      temperature: ($('miya-st-chat-temp') || {}).value != null ? parseFloat($('miya-st-chat-temp').value) : 1
+      temperature: ($('miya-st-chat-temp') || {}).value != null ? parseFloat($('miya-st-chat-temp').value) : 1,
+      embeddingModel: ($('miya-st-embed-model') || {}).value ? $('miya-st-embed-model').value.trim() : '',
+      embeddingBaseUrl: ($('miya-st-embed-base') || {}).value ? $('miya-st-embed-base').value.trim() : '',
+      embeddingApiKey: ($('miya-st-embed-key') || {}).value ? $('miya-st-embed-key').value.trim() : ''
     };
   }
 
@@ -1646,6 +1649,9 @@
   function syncChatApiPanelForms() {
     var cfg = getApiConfig();
     var sec = cfg.secondaryApi && typeof cfg.secondaryApi === 'object' ? cfg.secondaryApi : {};
+    if ($('miya-st-embed-model')) $('miya-st-embed-model').value = cfg.embeddingModel || '';
+    if ($('miya-st-embed-base')) $('miya-st-embed-base').value = cfg.embeddingBaseUrl || '';
+    if ($('miya-st-embed-key')) $('miya-st-embed-key').value = cfg.embeddingApiKey || '';
     if ($('miya-st-chat-base')) $('miya-st-chat-base').value = cfg.baseUrl || '';
     if ($('miya-st-chat-key')) $('miya-st-chat-key').value = cfg.apiKey || '';
     if ($('miya-st-chat-temp')) $('miya-st-chat-temp').value = cfg.temperature != null ? cfg.temperature : 1;
