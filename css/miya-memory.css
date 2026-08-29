@@ -1175,3 +1175,39 @@
   color: #e8943a;
 }
 
+/* 章节号大数字：0.15 太淡，拉到可读但不抢戏 */
+.mm-chapter__no {
+  color: rgba(245, 245, 240, 0.35);
+}
+
+/* 票根序号：0.12 太淡 */
+.mm-ticket::before {
+  color: rgba(245, 245, 240, 0.32);
+}
+
+/* 空态大破折号：0.08 太淡 */
+.mm-void::before {
+  color: rgba(245, 245, 240, 0.28);
+}
+
+/* 输入框数字：加粗防点阵干扰 */
+.miya-memory-app .mm-console__field input {
+  font-weight: 600;
+}
+
+/* 角色索引竖排字：muted 基础上再提一档 */
+.mm-index__spine-text {
+  color: var(--mm-faint);
+}
+
+/* 报头统计数字：保持白色但加重 */
+.mm-hero__stat em {
+  font-weight: 600;
+}
+
+/* 按钮在深色底上的可读性：线框按钮文字提亮 */
+.mm-btn {
+  color: var(--mm-ink);
+  border-color: rgba(245, 245, 240, 0.55);
+}
+
