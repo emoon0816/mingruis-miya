@@ -2750,7 +2750,7 @@
         var memExtract = global.MiyaChatMemoryExtract;
         var charMemBlock =
             memExtract && typeof memExtract.buildCharMemoryContextBlock === 'function'
-                ? memExtract.buildCharMemoryContextBlock(settings)
+                ? memExtract.buildCharMemoryContextBlock(settings, history, chatId)
                 : '';
         if (charMemBlock) {
             apiMessages.push({ role: 'system', content: charMemBlock });
