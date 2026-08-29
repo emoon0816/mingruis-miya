@@ -1098,3 +1098,80 @@
     max-width: 120px;
   }
 }
+
+/* —— 蚀月修复 2026-08-30：原生控件深色化 + 文字对比度 —— */
+.miya-memory-app {
+  color-scheme: dark;
+  --mm-muted: rgba(245, 245, 240, 0.66);
+  --mm-line-soft: rgba(245, 245, 240, 0.30);
+  --mm-faint: rgba(245, 245, 240, 0.55);
+}
+
+/* 数字输入框：去掉原生 spinner 与 iOS 浅色外观 */
+.miya-memory-app input[type="number"] {
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  appearance: none;
+}
+.miya-memory-app input[type="number"]::-webkit-outer-spin-button,
+.miya-memory-app input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* 自动填充深色化：不闪白底 */
+.miya-memory-app input:-webkit-autofill,
+.miya-memory-app input:-webkit-autofill:hover,
+.miya-memory-app input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--mm-ink);
+  -webkit-box-shadow: 0 0 0 1000px #111111 inset;
+  transition: background-color 9999s ease-in-out 0s;
+  caret-color: var(--mm-ink);
+}
+
+/* 详情滚动条：深色细条 */
+.miya-memory-app .mm-archive__inner {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(245, 245, 240, 0.35) rgba(0, 0, 0, 0.35);
+}
+.miya-memory-app .mm-archive__inner::-webkit-scrollbar {
+  width: 8px;
+}
+.miya-memory-app .mm-archive__inner::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.35);
+}
+.miya-memory-app .mm-archive__inner::-webkit-scrollbar-thumb {
+  background: rgba(245, 245, 240, 0.35);
+  border-radius: 4px;
+}
+.miya-memory-app .mm-archive__inner::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 245, 240, 0.55);
+}
+
+/* 小字号专门提亮（8–11px 的辅助文字，muted 变量之外再拉一档） */
+.mm-kicker,
+.mm-masthead__vol,
+.mm-console__label,
+.mm-console__hint,
+.mm-hero__stat,
+.mm-ticket__meta,
+.mm-chapter__sub,
+.mm-tag,
+.mm-clip__edit {
+  color: var(--mm-faint);
+}
+
+.mm-clip__del {
+  color: rgba(255, 170, 170, 0.95);
+}
+
+/* 正文再清晰一档 */
+.mm-clip__body {
+  color: rgba(245, 245, 240, 0.93);
+}
+
+/* 核心记忆编号徽章：深色底上保持可读 */
+.mm-clip--core::before {
+  color: #e8943a;
+}
+
