@@ -1605,7 +1605,7 @@
           <section class="st-form-section">
             <h4 class="st-form-section__title">向量记忆（可选）</h4>
             <div class="st-form-card ins-form-block">
-              <p style="font-size:12px;color:rgba(255,255,255,0.45);margin:0 0 10px;line-height:1.6;">记忆的语义检索。留空 = 本地关键词检索（无需配置）；填写后启用向量匹配，模型需是 embedding 类（如智谱 embedding-2）。密钥留空则复用主线路。</p>
+              <p style="font-size:12px;color:rgba(255,255,255,0.45);margin:0 0 10px;line-height:1.6;">记忆的语义检索。全部留空 = 兼容模式：自动跟随主线路（网关是智谱自动用 embedding-2；主模型本身是 embedding 类则直接用）。不兼容时自动回落本地关键词检索。</p>
               <label class="ins-field-label" for="miya-st-embed-base">向量网关地址</label>
               <input type="text" class="ins-text-input" id="miya-st-embed-base" placeholder="https://open.bigmodel.cn/api/paas/v4" autocomplete="off" spellcheck="false">
               <label class="ins-field-label" for="miya-st-embed-key">向量密钥</label>
@@ -6814,7 +6814,7 @@
   <script defer src="js1/miya-chat-online-format.js?v=23"></script>
   <script defer src="js1/miya-chat-summary.js?v=8"></script>
   <script defer src="js2/miya-memory-store.js?v=1"></script>
-  <script defer src="js2/miya-memory-retrieval.js?v=1"></script>
+  <script defer src="js2/miya-memory-retrieval.js?v=2"></script>
   <script defer src="js1/miya-chat-memory-extract.js?v=4"></script>
   <script defer src="js1/miya-chat-translate.js?v=10"></script>
   <script defer src="js1/miya-chat-image.js?v=4"></script>

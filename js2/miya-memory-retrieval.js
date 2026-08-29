@@ -21,10 +21,19 @@
   /** 生成向量：POST {baseUrl}/embeddings；失败返回 null（不抛） */
   function generateEmbedding(text, cfg) {
     cfg = cfg && typeof cfg === 'object' ? cfg : getApiConfig();
-    var model = String(cfg.embeddingModel || cfg.model || '').trim();
-    if (!isEmbeddingModelName(model)) return Promise.resolve(null);
     var baseUrl = String(cfg.embeddingBaseUrl || cfg.baseUrl || '').trim().replace(/\/+$/, '');
     var apiKey = String(cfg.embeddingApiKey || cfg.apiKey || '').trim();
+    var model = String(cfg.embeddingModel || '').trim();
+    // 兼容模式：向量配置留空 → 自动跟随主线路
+    if (!model) {
+      var mainModel = String(cfg.model || '').trim();
+      if (isEmbeddingModelName(mainModel)) {
+        model = mainModel;
+      } else if (/bigmodel|zhipu/i.test(baseUrl)) {
+        model = 'embedding-2';
+      }
+    }
+    if (!isEmbeddingModelName(model)) return Promise.resolve(null);
     if (!baseUrl || !apiKey) return Promise.resolve(null);
     var url = baseUrl.endsWith('/embeddings') ? baseUrl : baseUrl + '/embeddings';
     return fetch(url, {
